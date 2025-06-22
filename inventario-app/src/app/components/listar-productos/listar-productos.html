@@ -1,0 +1,39 @@
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of productos()">
+                <!-- Si este producto está en edición, muestro inputs -->
+                <ng-container *ngIf="editandoId === p.id; else modoVer">
+                    <td>{{p.id}}</td>
+                    <td><input [(ngModel)]="modeloEdicion.nombre" /></td>
+                    <td><input [(ngModel)]="modeloEdicion.categoria" /></td>
+                    <td><input type="number" [(ngModel)]="modeloEdicion.stock" /></td>
+                    <td class="acciones">
+                        <button (click)="guardarEdicion()">💾 Guardar</button>
+                        <button (click)="cancelarEdicion()">✖ Cancelar</button>
+                    </td>
+                </ng-container>
+                <!-- Modo sólo lectura -->
+                <ng-template #modoVer>
+                    <td>{{p.id}}</td>
+                    <td>{{p.nombre}}</td>
+                    <td>{{p.categoria}}</td>
+                    <td>{{p.stock}}</td>
+                    <td class="acciones">
+                        <button (click)="empezarEdicion(p)">✎ Editar</button>
+                        <button (click)="eliminar(p)" class="danger">🗑 Eliminar</button>
+                    </td>
+                </ng-template>
+            </tr>
+        </tbody>
+    </table>
+</div>

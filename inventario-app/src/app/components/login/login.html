@@ -1,0 +1,11 @@
+<h2>Iniciar Sesión</h2>
+<form (ngSubmit)="iniciarSesion()">
+    <input [(ngModel)]="correo" name="correo" required placeholder="Correo" />
+    <input [(ngModel)]="password" name="password" required type="password" placeholder="Contraseña" />
+    <button type="submit">Ingresar</button>
+</form>
+<p>¿No tienes una cuenta?
+    <a routerLink="/register" style="color: blue; text-decoration: underline; cursor: pointer;">
+        Regístrate aquí
+    </a>
+</p>

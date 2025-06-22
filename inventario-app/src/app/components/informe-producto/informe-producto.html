@@ -1,0 +1,28 @@
+<h2>Informe de Producto</h2>
+
+<label>Selecciona un producto:</label><br>
+<select [(ngModel)]="productoSeleccionado" (change)="verInforme()" name="producto">
+    <option *ngFor="let p of productos" [ngValue]="p">{{ p.nombre }}</option>
+</select>
+
+<div *ngIf="informe.length">
+    <h3>Resultados:</h3>
+    <table class= border-1>
+        <thead>
+            <tr>
+                <th>Método</th>
+                <th>Costo Unitario</th>
+                <th>Ventas Totales</th>
+                <th>Unidades Vendidas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let fila of informe">
+                <td>{{ fila.metodo }}</td>
+                <td>{{ fila.costoUnitario | number:'1.2-2' }}</td>
+                <td>{{ fila.ventasTotales | number:'1.2-2' }}</td>
+                <td>{{ fila.unidadesVendidas }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
